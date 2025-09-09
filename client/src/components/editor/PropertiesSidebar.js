@@ -15,7 +15,28 @@ import {
   AlignRight,
   Bold,
   Italic,
-  Underline
+  Underline,
+  Smartphone,
+  Tablet,
+  Monitor,
+  Layers,
+  Move,
+  RotateCcw,
+  Eye,
+  EyeOff,
+  Copy,
+  Trash2,
+  Plus,
+  Minus,
+  CornerUpRight,
+  CornerDownRight,
+  Square,
+  Circle,
+  Triangle,
+  Sparkles,
+  Sliders,
+  Paintbrush,
+  MousePointer
 } from 'lucide-react';
 import CMSPanel from './CMSPanel';
 import AnimationPanel from './AnimationPanel';
