@@ -1,0 +1,45 @@
+{
+  "name": "website-builder-server",
+  "version": "1.0.0",
+  "description": "Backend server for Website Builder SaaS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.2.1",
+    "graphql": "^15.8.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1",
+    "sharp": "^0.32.5",
+    "stripe": "^18.5.0",
+    "uuid": "^9.0.0",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "jwt",
+    "oauth"
+  ],
+  "author": "Website Builder Team",
+  "license": "MIT"
+}

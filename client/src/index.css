@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+  
+  * {
+    @apply border-gray-200;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+  }
+  
+  .btn-outline {
+    @apply btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+  }
+  
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  .input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+  
+  .sidebar {
+    @apply bg-white border-r border-gray-200 overflow-y-auto;
+  }
+  
+  .toolbar {
+    @apply bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between;
+  }
+  
+  .canvas-container {
+    @apply flex-1 bg-gray-100 overflow-auto;
+  }
+  
+  .element-dragging {
+    @apply opacity-50 transform rotate-2;
+  }
+  
+  .element-selected {
+    @apply ring-2 ring-primary-500 ring-opacity-50;
+  }
+  
+  .drop-zone {
+    @apply border-2 border-dashed border-primary-300 bg-primary-50;
+  }
+  
+  .properties-panel {
+    @apply space-y-4;
+  }
+  
+  .property-group {
+    @apply border-b border-gray-200 pb-4 last:border-b-0;
+  }
+  
+  .property-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  .loading-spinner {
+    @apply animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* React DnD styles */
+.drag-preview {
+  @apply opacity-80 transform rotate-2 pointer-events-none;
+}
+
+.drag-source {
+  @apply cursor-move;
+}
+
+.drop-target {
+  @apply transition-colors;
+}
+
+.drop-target.can-drop {
+  @apply bg-primary-50 border-primary-300;
+}
+
+.drop-target.is-over {
+  @apply bg-primary-100 border-primary-400;
+}
+
+/* Modal styles */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-screen overflow-y-auto;
+}
+
+/* Toast notification styles */
+.toast {
+  @apply px-4 py-3 rounded-lg shadow-lg text-white font-medium;
+}
+
+.toast-success {
+  @apply bg-green-600;
+}
+
+.toast-error {
+  @apply bg-red-600;
+}
+
+.toast-warning {
+  @apply bg-yellow-600;
+}
+
+.toast-info {
+  @apply bg-blue-600;
+}
+
+/* Loading states */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.skeleton-text {
+  @apply skeleton h-4 mb-2;
+}
+
+.skeleton-avatar {
+  @apply skeleton h-10 w-10 rounded-full;
+}
+
+.skeleton-button {
+  @apply skeleton h-10 w-24;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    @apply hidden;
+  }
+  
+  .mobile-full {
+    @apply w-full;
+  }
+}
