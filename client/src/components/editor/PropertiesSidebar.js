@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChromePicker } from 'react-color';
+import { Chrome } from '@uiw/react-color';
 import { 
   Type, 
   Palette, 
@@ -603,7 +603,7 @@ const ColorInput = ({ label, value, onChange, showColorPicker, setShowColorPicke
             className="fixed inset-0"
             onClick={() => setShowColorPicker(false)}
           />
-          <ChromePicker
+          <Chrome
             color={value}
             onChange={(color) => onChange(color.hex)}
           />
