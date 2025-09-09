@@ -15,7 +15,7 @@ import {
   Eye,
   Upload
 } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../stores/cmsStore';
 import CollectionCard from '../components/cms/CollectionCard';
 import ContentTable from '../components/cms/ContentTable';
@@ -53,7 +53,6 @@ const CMS = () => {
     clearSelections
   } = useCMSStore();
   
-  const { addToast } = useToasts();
 
   useEffect(() => {
     fetchCollections();

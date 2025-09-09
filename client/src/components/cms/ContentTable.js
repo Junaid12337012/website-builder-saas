@@ -13,7 +13,7 @@ import {
   Clock,
   Archive
 } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../../stores/cmsStore';
 
 const ContentTable = ({ content, collection, selectedIds, viewMode }) => {
@@ -24,15 +24,14 @@ const ContentTable = ({ content, collection, selectedIds, viewMode }) => {
     toggleContentSelection,
     setCurrentContent 
   } = useCMSStore();
-  const { addToast } = useToasts();
 
   const handleDelete = async (id, title) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
         await deleteContent(id);
-        addToast('Content deleted successfully', { appearance: 'success' });
+        toast.success('Content deleted successfully');
       } catch (error) {
-        addToast('Failed to delete content', { appearance: 'error' });
+        toast.error('Failed to delete content');
       }
     }
     setShowMenu(null);
@@ -42,11 +41,9 @@ const ContentTable = ({ content, collection, selectedIds, viewMode }) => {
     const publish = currentStatus !== 'published';
     try {
       await publishContent(id, publish);
-      addToast(`Content ${publish ? 'published' : 'unpublished'} successfully`, { 
-        appearance: 'success' 
-      });
+      toast.success(`Content ${publish ? 'published' : 'unpublished'} successfully`);
     } catch (error) {
-      addToast('Failed to update content status', { appearance: 'error' });
+      toast.error('Failed to update content status');
     }
     setShowMenu(null);
   };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Plus, Trash2, Database, Sparkles } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../../stores/cmsStore';
 import cmsService from '../../services/cmsService';
 import LoadingSpinner from '../LoadingSpinner';
@@ -14,7 +14,6 @@ const CreateCollectionModal = ({ isOpen, onClose }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { createCollection } = useCMSStore();
-  const { addToast } = useToasts();
 
   const fieldTypes = [
     { value: 'text', label: 'Text', description: 'Single line text input' },
@@ -89,7 +88,7 @@ const CreateCollectionModal = ({ isOpen, onClose }) => {
     }));
   };
 
-  const useTemplate = (template) => {
+  const applyTemplate = (template) => {
     setFormData({
       name: template.name,
       description: template.description,
@@ -101,12 +100,12 @@ const CreateCollectionModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     
     if (!formData.name.trim()) {
-      addToast('Collection name is required', { appearance: 'error' });
+      toast.error('Collection name is required');
       return;
     }
 
     if (formData.fields.length === 0) {
-      addToast('At least one field is required', { appearance: 'error' });
+      toast.error('At least one field is required');
       return;
     }
 
@@ -114,7 +113,7 @@ const CreateCollectionModal = ({ isOpen, onClose }) => {
     for (let i = 0; i < formData.fields.length; i++) {
       const field = formData.fields[i];
       if (!field.name.trim() || !field.label.trim()) {
-        addToast(`Field ${i + 1} name and label are required`, { appearance: 'error' });
+        toast.error(`Field ${i + 1} name and label are required`);
         return;
       }
     }
@@ -122,11 +121,11 @@ const CreateCollectionModal = ({ isOpen, onClose }) => {
     setIsLoading(true);
     try {
       await createCollection(formData);
-      addToast('Collection created successfully', { appearance: 'success' });
+      toast.success('Collection created successfully');
       onClose();
       setFormData({ name: '', description: '', fields: [] });
     } catch (error) {
-      addToast(error.message || 'Failed to create collection', { appearance: 'error' });
+      toast.error(error.message || 'Failed to create collection');
     } finally {
       setIsLoading(false);
     }
@@ -170,7 +169,7 @@ const CreateCollectionModal = ({ isOpen, onClose }) => {
                   <button
                     key={index}
                     type="button"
-                    onClick={() => useTemplate(template.template)}
+                    onClick={() => applyTemplate(template.template)}
                     className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors text-left"
                   >
                     <div className="text-2xl mb-2">{template.icon}</div>

@@ -20,6 +20,12 @@ import PricingPage from './pages/PricingPage';
 import FeaturesPage from './pages/FeaturesPage';
 import ContactPage from './pages/ContactPage';
 import HelpPage from './pages/HelpPage';
+import TemplatesPage from './pages/TemplatesPage';
+import IntegrationsPage from './pages/IntegrationsPage';
+import BlogPage from './pages/BlogPage';
+import CareersPage from './pages/CareersPage';
+import CMS from './pages/CMS';
+import ProfilePage from './pages/ProfilePage';
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
@@ -43,11 +49,11 @@ function App() {
   }
 
   const shouldShowNavbar = () => {
-    const publicPaths = ['/', '/login', '/register', '/auth/callback', '/features', '/pricing', '/about', '/contact', '/help'];
+    const publicPaths = ['/', '/login', '/register', '/auth/callback', '/features', '/pricing', '/about', '/contact', '/help', '/templates', '/integrations', '/blog', '/careers'];
     const currentPath = window.location.pathname;
     
     // Show navbar on public paths when user is not logged in, or on marketing pages regardless of login status
-    const isMarketingPage = ['/features', '/pricing', '/about', '/contact', '/help'].includes(currentPath);
+    const isMarketingPage = ['/features', '/pricing', '/about', '/contact', '/help', '/templates', '/integrations', '/blog', '/careers'].includes(currentPath);
     return publicPaths.includes(currentPath) && (!user || isMarketingPage);
   };
 
@@ -67,6 +73,10 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/help" element={<HelpPage />} />
+        <Route path="/templates" element={<TemplatesPage />} />
+        <Route path="/integrations" element={<IntegrationsPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/careers" element={<CareersPage />} />
         
         {/* Protected routes */}
         <Route path="/dashboard" element={
@@ -92,6 +102,16 @@ function App() {
         <Route path="/billing/cancel" element={
           <ProtectedRoute>
             <BillingCancelPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/cms" element={
+          <ProtectedRoute>
+            <CMS />
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <ProfilePage />
           </ProtectedRoute>
         } />
         

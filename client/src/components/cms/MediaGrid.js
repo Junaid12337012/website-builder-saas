@@ -11,21 +11,20 @@ import {
   Calendar,
   Eye
 } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../../stores/cmsStore';
 
 const MediaGrid = ({ media, selectedIds, viewMode }) => {
   const [showMenu, setShowMenu] = useState(null);
   const { deleteMedia, updateMedia, toggleMediaSelection } = useCMSStore();
-  const { addToast } = useToasts();
 
   const handleDelete = async (id, filename) => {
     if (window.confirm(`Are you sure you want to delete "${filename}"?`)) {
       try {
         await deleteMedia(id);
-        addToast('Media deleted successfully', { appearance: 'success' });
+        toast.success('Media deleted successfully');
       } catch (error) {
-        addToast('Failed to delete media', { appearance: 'error' });
+        toast.error('Failed to delete media');
       }
     }
     setShowMenu(null);

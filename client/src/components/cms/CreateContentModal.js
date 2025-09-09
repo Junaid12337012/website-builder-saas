@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Save, FileText, Image, Calendar, Type } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../../stores/cmsStore';
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -12,7 +12,6 @@ const CreateContentModal = ({ isOpen, onClose, collection }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { createContent } = useCMSStore();
-  const { addToast } = useToasts();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -36,12 +35,12 @@ const CreateContentModal = ({ isOpen, onClose, collection }) => {
     e.preventDefault();
     
     if (!formData.title.trim()) {
-      addToast('Title is required', { appearance: 'error' });
+      toast.error('Title is required');
       return;
     }
 
     if (!collection) {
-      addToast('No collection selected', { appearance: 'error' });
+      toast.error('No collection selected');
       return;
     }
 
@@ -53,11 +52,11 @@ const CreateContentModal = ({ isOpen, onClose, collection }) => {
         data: formData.data,
         status: 'draft'
       });
-      addToast('Content created successfully', { appearance: 'success' });
+      toast.success('Content created successfully');
       onClose();
       setFormData({ title: '', data: {} });
     } catch (error) {
-      addToast(error.message || 'Failed to create content', { appearance: 'error' });
+      toast.error(error.message || 'Failed to create content');
     } finally {
       setIsLoading(false);
     }

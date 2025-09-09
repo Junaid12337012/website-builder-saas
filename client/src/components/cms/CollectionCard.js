@@ -10,22 +10,21 @@ import {
   Calendar,
   FileText
 } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../../stores/cmsStore';
 
 const CollectionCard = ({ collection, onSelect }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [stats, setStats] = useState(null);
   const { deleteCollection } = useCMSStore();
-  const { addToast } = useToasts();
 
   const handleDelete = async () => {
     if (window.confirm(`Are you sure you want to delete "${collection.name}"? This will also delete all content in this collection.`)) {
       try {
         await deleteCollection(collection._id);
-        addToast('Collection deleted successfully', { appearance: 'success' });
+        toast.success('Collection deleted successfully');
       } catch (error) {
-        addToast('Failed to delete collection', { appearance: 'error' });
+        toast.error('Failed to delete collection');
       }
     }
     setShowMenu(false);

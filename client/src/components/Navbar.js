@@ -13,7 +13,8 @@ import {
   Code,
   Globe,
   Users,
-  Star
+  Star,
+  Database
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
 import { useSubscription } from '../hooks/useSubscription';
@@ -72,7 +73,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Features', path: '/features', anchor: '/#features' },
+    { name: 'Templates', path: '/templates' },
+    { name: 'Integrations', path: '/integrations' },
     { name: 'Pricing', path: '/pricing', anchor: '/#pricing' },
+    { name: 'Blog', path: '/blog' },
     { name: 'About', path: '/about', anchor: '/#about' },
     { name: 'Contact', path: '/contact', anchor: '/#contact' },
     { name: 'Help', path: '/help', anchor: '/#help' }
@@ -246,6 +250,22 @@ const Navbar = () => {
                             <span className="text-sm text-gray-700">Dashboard</span>
                           </Link>
                           <Link
+                            to="/cms"
+                            className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            <Database className="w-4 h-4 text-gray-500" />
+                            <span className="text-sm text-gray-700">Content Management</span>
+                          </Link>
+                          <Link
+                            to="/profile"
+                            className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            <User className="w-4 h-4 text-gray-500" />
+                            <span className="text-sm text-gray-700">Profile</span>
+                          </Link>
+                          <Link
                             to="/billing"
                             className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
                             onClick={() => setIsUserMenuOpen(false)}
@@ -373,6 +393,22 @@ const Navbar = () => {
                   >
                     <User className="w-5 h-5 text-gray-500" />
                     <span className="text-gray-700">Dashboard</span>
+                  </Link>
+                  <Link
+                    to="/cms"
+                    className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <Database className="w-5 h-5 text-gray-500" />
+                    <span className="text-gray-700">Content Management</span>
+                  </Link>
+                  <Link
+                    to="/profile"
+                    className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <User className="w-5 h-5 text-gray-500" />
+                    <span className="text-gray-700">Profile</span>
                   </Link>
                   <Link
                     to="/billing"

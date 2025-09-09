@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { X, Upload, Image, Video, FileText, Trash2 } from 'lucide-react';
-import { useToasts } from 'react-toast-notifications';
+import { toast } from 'react-toastify';
 import { useCMSStore } from '../../stores/cmsStore';
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -10,7 +10,6 @@ const MediaUploadModal = ({ isOpen, onClose }) => {
   const [dragActive, setDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const { uploadMedia } = useCMSStore();
-  const { addToast } = useToasts();
 
   const handleDrag = useCallback((e) => {
     e.preventDefault();
@@ -64,7 +63,7 @@ const MediaUploadModal = ({ isOpen, onClose }) => {
 
   const handleUpload = async () => {
     if (files.length === 0) {
-      addToast('Please select files to upload', { appearance: 'error' });
+      toast.error('Please select files to upload');
       return;
     }
 
@@ -77,11 +76,11 @@ const MediaUploadModal = ({ isOpen, onClose }) => {
           tags: fileData.tags
         });
       }
-      addToast(`${files.length} file(s) uploaded successfully`, { appearance: 'success' });
+      toast.success(`${files.length} file(s) uploaded successfully`);
       onClose();
       setFiles([]);
     } catch (error) {
-      addToast(error.message || 'Failed to upload files', { appearance: 'error' });
+      toast.error(error.message || 'Failed to upload files');
     } finally {
       setIsUploading(false);
     }
