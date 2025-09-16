@@ -11,7 +11,13 @@ import {
   Instagram,
   Linkedin,
   Github,
-  ArrowRight
+  ArrowRight,
+  Sparkles,
+  Heart,
+  Shield,
+  Award,
+  Users,
+  Globe
 } from 'lucide-react';
 
 const Footer = () => {
@@ -53,20 +59,35 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/10 to-secondary-500/10"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary-500/10 rounded-full blur-3xl"></div>
+      </div>
       {/* Newsletter Section */}
-      <div className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div className="border-b border-neutral-800/50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="relative"
             >
-              <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
-              <p className="text-gray-400">
-                Get the latest updates, tips, and exclusive content delivered to your inbox.
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent">Stay Updated</h3>
+                  <p className="text-primary-400 text-sm font-medium">Join 50,000+ creators</p>
+                </div>
+              </div>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                Get the latest updates, exclusive templates, and pro tips delivered to your inbox.
               </p>
             </motion.div>
             
@@ -77,16 +98,17 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <div className="flex-1">
+              <div className="flex-1 relative">
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors text-white placeholder-gray-400"
+                  placeholder="Enter your email address"
+                  className="w-full px-6 py-4 bg-neutral-800/50 backdrop-blur-sm border border-neutral-700/50 rounded-2xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500/50 transition-all duration-300 text-white placeholder-neutral-400 shadow-lg"
                 />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-500/10 to-secondary-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
-              <button className="px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center">
+              <button className="px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold rounded-2xl hover:from-primary-700 hover:to-secondary-700 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group">
                 Subscribe
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </motion.div>
           </div>
@@ -94,8 +116,8 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <motion.div
@@ -104,47 +126,79 @@ const Footer = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Link to="/" className="flex items-center space-x-2 mb-6">
-                <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-white" />
+              <Link to="/" className="flex items-center space-x-3 mb-8 group">
+                <div className="relative">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 via-primary-600 to-secondary-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <Zap className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <Sparkles className="w-2.5 h-2.5 text-white" />
+                  </div>
                 </div>
-                <span className="text-xl font-bold">WebBuilder</span>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent">WebBuilder</span>
+                  <span className="text-sm text-primary-400 font-medium -mt-1">Pro</span>
+                </div>
               </Link>
               
-              <p className="text-gray-400 mb-6 max-w-sm">
-                The most powerful drag-and-drop website builder. Create stunning websites 
+              <p className="text-neutral-300 mb-8 max-w-sm text-lg leading-relaxed">
+                The most powerful drag-and-drop website builder. Create stunning, responsive websites 
                 without writing a single line of code.
               </p>
+              
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary-400">50K+</div>
+                  <div className="text-xs text-neutral-400 uppercase tracking-wide">Users</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-secondary-400">1M+</div>
+                  <div className="text-xs text-neutral-400 uppercase tracking-wide">Sites Built</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-accent-400">99.9%</div>
+                  <div className="text-xs text-neutral-400 uppercase tracking-wide">Uptime</div>
+                </div>
+              </div>
 
               {/* Contact Info */}
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center text-gray-400">
-                  <Mail className="w-4 h-4 mr-3" />
-                  <span>hello@webbuilder.com</span>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center text-neutral-300 hover:text-primary-400 transition-colors duration-300 group">
+                  <div className="w-10 h-10 bg-neutral-800/50 rounded-xl flex items-center justify-center mr-4 group-hover:bg-primary-500/20 transition-colors duration-300">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <span className="font-medium">hello@webbuilder.com</span>
                 </div>
-                <div className="flex items-center text-gray-400">
-                  <Phone className="w-4 h-4 mr-3" />
-                  <span>+1 (555) 123-4567</span>
+                <div className="flex items-center text-neutral-300 hover:text-primary-400 transition-colors duration-300 group">
+                  <div className="w-10 h-10 bg-neutral-800/50 rounded-xl flex items-center justify-center mr-4 group-hover:bg-primary-500/20 transition-colors duration-300">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <span className="font-medium">+1 (555) 123-4567</span>
                 </div>
-                <div className="flex items-center text-gray-400">
-                  <MapPin className="w-4 h-4 mr-3" />
-                  <span>San Francisco, CA</span>
+                <div className="flex items-center text-neutral-300 hover:text-primary-400 transition-colors duration-300 group">
+                  <div className="w-10 h-10 bg-neutral-800/50 rounded-xl flex items-center justify-center mr-4 group-hover:bg-primary-500/20 transition-colors duration-300">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <span className="font-medium">San Francisco, CA</span>
                 </div>
               </div>
 
               {/* Social Links */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-3">
                 {socialLinks.map((social, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-600 transition-colors"
+                    className="w-12 h-12 bg-neutral-800/50 backdrop-blur-sm rounded-2xl flex items-center justify-center text-neutral-400 hover:text-white hover:bg-gradient-to-r hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                     aria-label={social.name}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {social.icon}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </motion.div>
@@ -157,14 +211,15 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-6">Product</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold mb-6 text-white">Product</h4>
+            <ul className="space-y-4">
               {footerLinks.product.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-neutral-300 hover:text-primary-400 transition-all duration-300 font-medium flex items-center group"
                   >
+                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                     {link.name}
                   </Link>
                 </li>
@@ -179,14 +234,15 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-6">Company</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold mb-6 text-white">Company</h4>
+            <ul className="space-y-4">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-neutral-300 hover:text-primary-400 transition-all duration-300 font-medium flex items-center group"
                   >
+                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                     {link.name}
                   </Link>
                 </li>
@@ -201,14 +257,15 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-6">Support</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold mb-6 text-white">Support</h4>
+            <ul className="space-y-4">
               {footerLinks.support.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-neutral-300 hover:text-primary-400 transition-all duration-300 font-medium flex items-center group"
                   >
+                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                     {link.name}
                   </Link>
                 </li>
@@ -223,14 +280,15 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold mb-6">Legal</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold mb-6 text-white">Legal</h4>
+            <ul className="space-y-4">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-neutral-300 hover:text-primary-400 transition-all duration-300 font-medium flex items-center group"
                   >
+                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                     {link.name}
                   </Link>
                 </li>
@@ -241,17 +299,29 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="border-t border-neutral-800/50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-gray-400 text-sm mb-4 md:mb-0"
+              className="flex items-center space-x-4"
             >
-              © {currentYear} WebBuilder. All rights reserved.
+              <div className="text-neutral-300 text-sm font-medium">
+                © {currentYear} WebBuilder. All rights reserved.
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2 px-3 py-1 bg-neutral-800/50 rounded-full">
+                  <Shield className="w-3 h-3 text-green-400" />
+                  <span className="text-xs text-neutral-400">SOC 2 Compliant</span>
+                </div>
+                <div className="flex items-center space-x-2 px-3 py-1 bg-neutral-800/50 rounded-full">
+                  <Award className="w-3 h-3 text-yellow-400" />
+                  <span className="text-xs text-neutral-400">ISO 27001</span>
+                </div>
+              </div>
             </motion.div>
             
             <motion.div
@@ -261,10 +331,17 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center space-x-6 text-sm"
             >
-              <span className="text-gray-400">Made with ❤️ in San Francisco</span>
+              <div className="flex items-center space-x-2 text-neutral-300">
+                <Heart className="w-4 h-4 text-red-400 animate-pulse" />
+                <span className="font-medium">Made with love in San Francisco</span>
+              </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-gray-400">All systems operational</span>
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+                <span className="text-neutral-400 font-medium">All systems operational</span>
+              </div>
+              <div className="flex items-center space-x-2 text-neutral-300">
+                <Globe className="w-4 h-4 text-blue-400" />
+                <span className="font-medium">Global CDN</span>
               </div>
             </motion.div>
           </div>

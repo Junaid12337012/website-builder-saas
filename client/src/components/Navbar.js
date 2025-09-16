@@ -14,7 +14,12 @@ import {
   Globe,
   Users,
   Star,
-  Database
+  Database,
+  Sparkles,
+  Layers,
+  Smartphone,
+  Monitor,
+  ArrowRight
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
 import { useSubscription } from '../hooks/useSubscription';
@@ -87,103 +92,136 @@ const Navbar = () => {
       icon: <Zap className="w-5 h-5" />,
       title: 'Drag & Drop Builder',
       description: 'Build websites visually with our intuitive editor',
-      path: '/features'
+      path: '/features',
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
       icon: <Palette className="w-5 h-5" />,
       title: 'Design System',
       description: 'Professional themes and components',
-      path: '/features'
+      path: '/features',
+      gradient: 'from-purple-500 to-pink-500'
     },
     {
       icon: <Code className="w-5 h-5" />,
       title: 'Code Export',
       description: 'Export clean HTML, CSS, and React code',
-      path: '/features'
+      path: '/features',
+      gradient: 'from-green-500 to-emerald-500'
     },
     {
       icon: <Globe className="w-5 h-5" />,
       title: 'One-Click Deploy',
       description: 'Publish to Netlify, Vercel, and more',
-      path: '/features'
+      path: '/features',
+      gradient: 'from-orange-500 to-red-500'
+    },
+    {
+      icon: <Smartphone className="w-5 h-5" />,
+      title: 'Mobile First',
+      description: 'Responsive designs that work on all devices',
+      path: '/features',
+      gradient: 'from-indigo-500 to-purple-500'
+    },
+    {
+      icon: <Layers className="w-5 h-5" />,
+      title: 'Component Library',
+      description: 'Pre-built components for faster development',
+      path: '/templates',
+      gradient: 'from-teal-500 to-blue-500'
     }
   ];
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' 
+          ? 'bg-white/80 backdrop-blur-xl shadow-2xl border-b border-white/20' 
           : 'bg-transparent'
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
-              <Zap className="w-5 h-5 text-white" />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 via-primary-600 to-secondary-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <Sparkles className="w-2.5 h-2.5 text-white" />
+              </div>
             </div>
-            <span className="text-xl font-bold text-gray-900">WebBuilder</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">WebBuilder</span>
+              <span className="text-xs text-neutral-500 font-medium -mt-1">Pro</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-2">
             {/* Product Menu */}
             <div className="relative">
               <button
                 onClick={() => setIsProductMenuOpen(!isProductMenuOpen)}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
                   isActive('/features') 
-                    ? 'text-primary-600 bg-primary-50' 
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                    ? 'text-primary-700 bg-gradient-to-r from-primary-50 to-primary-100 shadow-sm' 
+                    : 'text-neutral-700 hover:text-primary-600 hover:bg-neutral-50/80 backdrop-blur-sm'
                 }`}
               >
                 <span>Product</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${isProductMenuOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-all duration-300 ${isProductMenuOpen ? 'rotate-180 text-primary-600' : ''}`} />
               </button>
 
               <AnimatePresence>
                 {isProductMenuOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden"
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    className="absolute top-full left-0 mt-3 w-96 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
                   >
-                    <div className="p-4">
-                      <div className="grid grid-cols-1 gap-3">
+                    <div className="p-6">
+                      <div className="grid grid-cols-2 gap-4">
                         {productFeatures.map((feature, index) => (
-                          <Link
+                          <motion.div
                             key={index}
-                            to={feature.path}
-                            className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                            onClick={() => setIsProductMenuOpen(false)}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
                           >
-                            <div className="text-primary-600 mt-1">
-                              {feature.icon}
-                            </div>
-                            <div>
-                              <h4 className="font-medium text-gray-900">{feature.title}</h4>
-                              <p className="text-sm text-gray-600 mt-1">{feature.description}</p>
-                            </div>
-                          </Link>
+                            <Link
+                              to={feature.path}
+                              className="group flex flex-col items-start p-4 rounded-xl hover:bg-gradient-to-br hover:from-neutral-50 hover:to-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                              onClick={() => setIsProductMenuOpen(false)}
+                            >
+                              <div className={`w-10 h-10 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                                <div className="text-white">
+                                  {feature.icon}
+                                </div>
+                              </div>
+                              <h4 className="font-semibold text-neutral-900 mb-1 group-hover:text-primary-700 transition-colors">{feature.title}</h4>
+                              <p className="text-xs text-neutral-600 leading-relaxed">{feature.description}</p>
+                            </Link>
+                          </motion.div>
                         ))}
                       </div>
-                      <div className="mt-4 pt-4 border-t border-gray-100">
+                      <div className="mt-6 pt-4 border-t border-neutral-100">
                         <Link
-                          to="/features"
-                          className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-primary-50 to-secondary-50 hover:from-primary-100 hover:to-secondary-100 transition-colors"
+                          to="/templates"
+                          className="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                           onClick={() => setIsProductMenuOpen(false)}
                         >
                           <div>
-                            <h4 className="font-medium text-gray-900">Browse Templates</h4>
-                            <p className="text-sm text-gray-600">Professional designs ready to use</p>
+                            <h4 className="font-semibold text-white mb-1">Browse Templates</h4>
+                            <p className="text-sm text-primary-100">Professional designs ready to use</p>
                           </div>
-                          <Star className="w-5 h-5 text-primary-600" />
+                          <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
                         </Link>
                       </div>
                     </div>
@@ -193,14 +231,14 @@ const Navbar = () => {
             </div>
 
             {/* Navigation Links */}
-            {navLinks.map((link) => (
+            {navLinks.slice(0, 5).map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
                   isActive(link.path)
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                    ? 'text-primary-700 bg-gradient-to-r from-primary-50 to-primary-100 shadow-sm'
+                    : 'text-neutral-700 hover:text-primary-600 hover:bg-neutral-50/80 backdrop-blur-sm'
                 }`}
               >
                 {link.name}
@@ -209,7 +247,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3">
             {user ? (
               <>
                 {/* User Menu */}
@@ -291,13 +329,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
+                  className="px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:text-primary-600 transition-all duration-300 rounded-xl hover:bg-neutral-50/80"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
+                  className="px-6 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   Get Started
                 </Link>
@@ -308,13 +346,18 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-3 rounded-xl hover:bg-neutral-100/80 backdrop-blur-sm transition-all duration-300"
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-gray-600" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-600" />
-            )}
+            <motion.div
+              animate={{ rotate: isMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-neutral-700" />
+              ) : (
+                <Menu className="w-6 h-6 text-neutral-700" />
+              )}
+            </motion.div>
           </button>
         </div>
       </div>
@@ -323,50 +366,64 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-200"
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-white/20 shadow-xl"
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-6 py-6 space-y-4">
               {/* Product Features */}
-              <div className="space-y-2">
-                <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">Product</p>
-                {productFeatures.map((feature, index) => (
-                  <Link
-                    key={index}
-                    to={feature.path}
-                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <div className="text-primary-600">
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">{feature.title}</p>
-                      <p className="text-sm text-gray-600">{feature.description}</p>
-                    </div>
-                  </Link>
-                ))}
+              <div className="space-y-3">
+                <p className="text-sm font-bold text-neutral-500 uppercase tracking-wider">Product</p>
+                <div className="grid grid-cols-1 gap-3">
+                  {productFeatures.slice(0, 4).map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Link
+                        to={feature.path}
+                        className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-neutral-50 hover:to-white transition-all duration-300 group"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <div className={`w-10 h-10 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                          <div className="text-white">
+                            {feature.icon}
+                          </div>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-neutral-900 group-hover:text-primary-700 transition-colors">{feature.title}</p>
+                          <p className="text-sm text-neutral-600">{feature.description}</p>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
 
               <hr className="my-4" />
 
               {/* Navigation Links */}
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`block px-3 py-2 rounded-lg text-base font-medium transition-colors ${
-                    isActive(link.path)
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <div className="space-y-2">
+                <p className="text-sm font-bold text-neutral-500 uppercase tracking-wider">Navigation</p>
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all duration-300 ${
+                      isActive(link.path)
+                        ? 'text-primary-700 bg-gradient-to-r from-primary-50 to-primary-100 shadow-sm'
+                        : 'text-neutral-700 hover:text-primary-600 hover:bg-neutral-50/80'
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
 
               <hr className="my-4" />
 
@@ -427,17 +484,17 @@ const Navbar = () => {
                   </button>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Link
                     to="/login"
-                    className="block px-3 py-2 text-center text-gray-700 hover:text-primary-600 transition-colors"
+                    className="block px-4 py-3 text-center text-neutral-700 hover:text-primary-600 transition-all duration-300 rounded-xl hover:bg-neutral-50/80 font-semibold"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Sign In
                   </Link>
                   <Link
                     to="/register"
-                    className="block px-3 py-2 bg-primary-600 text-white text-center rounded-lg hover:bg-primary-700 transition-colors"
+                    className="block px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-center rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg font-semibold"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Get Started
